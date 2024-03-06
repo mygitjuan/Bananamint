@@ -20,15 +20,16 @@ public class GoalServiceImp implements GoalService{
     private GoalRepositoryData repoGoal;
 
     @Autowired
-    private CustomerService repoCustomer;
+    private CustomerService serviceCustomer;
 
     @Override
     public List<Goal> showAll(Long idCustomer) throws GoalException {
-        Customer usuario = repoCustomer.findByCustomerId(idCustomer);
+        Customer usuario = serviceCustomer.findByCustomerId(idCustomer);
 
-        //List<Goal> listGoal = repoGoal.getClass();
+        List<Goal> listGoal = repoGoal.findByUserContaining(usuario);
 
-        return null;
+        return listGoal;
+
     }
 
     @Override

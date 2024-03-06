@@ -60,7 +60,8 @@ class CustomerRepositoryDataTest {
     @Transactional
     void findById() throws CustomerException {
         // given SQL Inserts
-        Customer usu = new Customer(null,"FAKE","j@j.com", LocalDate.now(),"04653011L");
+        LocalDate datNat = LocalDate.now().minusYears(20L);
+        Customer usu = new Customer(null,"FAKE","j@j.com", datNat,"04653011L");
         em.persist(usu);
         em.flush();
 

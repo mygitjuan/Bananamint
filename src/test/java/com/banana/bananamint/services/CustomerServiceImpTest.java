@@ -37,7 +37,7 @@ class CustomerServiceImpTest {
     @Test
     @Transactional
     void findById() throws CustomerException {
-        // given SQL Inserts
+        // given
         Customer usu = new Customer(null,"FAKE","j@j.com", LocalDate.now(),"04653011L");
         em.persist(usu);
         em.flush();

@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface GoalRepositoryData  extends JpaRepository<Goal, Long> {
 
-    //public List<Goal> findAllByCustomerId(Long idCustomer) throws SQLException;
+    List<Goal> findByUserContaining(Customer user);
 
 }

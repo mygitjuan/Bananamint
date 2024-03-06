@@ -47,12 +47,6 @@ public class Customer {
     @Schema(name = "dni", example = "04653011L", required = true)
     private String dni;
 
-    /*@Transient
-    @JsonIgnore
-    @Schema(name = "goal_id", example = "", required = false)
-    @OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY, mappedBy = "user")
-    private Goal goal;*/
-
 
     public boolean isValid() throws CustomerException {
         // Para que el usuario sea valido:
