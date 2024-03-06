@@ -1,9 +1,12 @@
 package com.banana.bananamint.services;
 
+import com.banana.bananamint.domain.Account;
+import com.banana.bananamint.domain.Customer;
 import com.banana.bananamint.domain.Expense;
 import com.banana.bananamint.domain.Income;
 import com.banana.bananamint.exception.IncomeExpenseException;
 import com.banana.bananamint.payload.IncomeExpenseComparison;
+import com.banana.bananamint.persistence.AccountRepositoryData;
 import com.banana.bananamint.persistence.CustomerRepositoryData;
 import com.banana.bananamint.persistence.ExpenseRepositoryData;
 import com.banana.bananamint.persistence.IncomeRepositoryData;
@@ -13,38 +16,73 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IncomeExpenseServ implements IncomeExpenseService{
     @Autowired
-    private CustomerRepositoryData usuRepo;
-
+    private CustomerRepositoryData custRepo;
     @Autowired
-    private ExpenseRepositoryData gastoRepo;
+    private AccountRepositoryData accoRepo;
+    @Autowired
+    private ExpenseRepositoryData gastRepo;
     @Autowired
     private IncomeRepositoryData ingrRepo;
-
     @PersistenceContext
     EntityManager em;
+
     @Override
     public List<Income> showAllIncomes(Long idCustomer) throws IncomeExpenseException {
-        return ingrRepo.findAll();
+        List<Income> ingrTot = ingrRepo.findAll();
+        List<Income> ingUsu = new ArrayList<>();
+
+        Customer cust = custRepo.findById(idCustomer).orElseThrow(() -> new IncomeExpenseException("No existe el customer" + idCustomer));
+        em.detach(cust);
+
+        for (Income income: ingrTot){
+            if(income.getUser() == cust){ingUsu.add(income);}
+        }
+        return ingUsu;
     }
 
     @Override
     public Income addIncome(Long idCustomer, Income income) throws IncomeExpenseException {
-        return ingrRepo.save(income);
+        Customer cust = custRepo.findById(idCustomer).orElseThrow(() -> new IncomeExpenseException("No existe el customer" + idCustomer));
+        em.detach(cust);
+
+        if (income.getUser() == cust) {return ingrRepo.save(income);}
+        else{
+            new IncomeExpenseException("No tiene el mismo customer" + idCustomer);
+            return null;
+        }
     }
 
     @Override
-    public List<Income> showAllExpenses(Long idCustomer) throws IncomeExpenseException {
-        return ingrRepo.findAll();
+    public List<Expense> showAllExpenses(Long idCustomer) throws IncomeExpenseException {
+        List<Expense> gastTot = gastRepo.findAll();
+        List<Expense> gastUsu = new ArrayList<>();
+
+        Customer cust = custRepo.findById(idCustomer).orElseThrow(() -> new IncomeExpenseException("No existe el customer" + idCustomer));
+        em.detach(cust);
+
+        for (Expense expense: gastTot){
+            if(expense.getUser() == cust){gastUsu.add(expense);}
+        }
+        return gastUsu;
     }
 
     @Override
-    public Income addExpense(Long idCustomer, Expense expense) throws IncomeExpenseException {
-        return null;
+    public Expense addExpense(Long idCustomer, Expense expense) throws IncomeExpenseException {
+        Customer cust = custRepo.findById(idCustomer).orElseThrow(() -> new IncomeExpenseException("No existe el customer" + idCustomer));
+        em.detach(cust);
+
+        if (expense.getUser() == cust) {return gastRepo.save(expense);}
+        else{
+            new IncomeExpenseException("No tiene el mismo customer" + idCustomer);
+            return null;
+        }
     }
 
     @Override

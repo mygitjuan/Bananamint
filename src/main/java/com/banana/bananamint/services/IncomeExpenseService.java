@@ -13,9 +13,9 @@ public interface IncomeExpenseService {
 
     public Income addIncome(Long idCustomer, Income income) throws IncomeExpenseException;
 
-    public List<Income> showAllExpenses(Long idCustomer) throws IncomeExpenseException;
+    public List<Expense> showAllExpenses(Long idCustomer) throws IncomeExpenseException;
 
-    public Income addExpense(Long idCustomer, Expense expense) throws IncomeExpenseException;
+    public Expense addExpense(Long idCustomer, Expense expense) throws IncomeExpenseException;
 
     public List<Income> showAllExpensesByDateRange(Long idCustomer, LocalDate initDate, LocalDate finalDate) throws IncomeExpenseException;
 

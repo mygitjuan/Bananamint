@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataJpaTest
 @ComponentScan("com.banana.bananamint.persistence")
 @AutoConfigureTestEntityManager
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class CustomerRepositoryDataTest {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepositoryDataTest.class);
 
@@ -36,11 +35,9 @@ class CustomerRepositoryDataTest {
 
     @Test
     void findAll() throws Exception {
-        // given SQL Inserts
+        // given
         Customer usu = new Customer(null,"FAKE","j@j.com", LocalDate.now(),"04653011L");
         em.persist(usu);
-        //em.remove(usu); //quiero usar un Entity Manager, pero no quiero hacer el alta, solo quiero retornar datos
-        //em.flush();
 
         // when
 
@@ -48,12 +45,7 @@ class CustomerRepositoryDataTest {
         logger.info("Lista usuarios:" + usuList);
 
         // then
-        assertThat(usuList.size())
-                .isGreaterThan(0);
-
+        assertThat(usuList.size()).isGreaterThan(0);
         assertNotNull(usuList);
-
     }
-
-
 }
