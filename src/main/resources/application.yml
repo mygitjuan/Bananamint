@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ProyectosTareas
+    name: Bananamint
   profiles.active: dev
 
 server:
