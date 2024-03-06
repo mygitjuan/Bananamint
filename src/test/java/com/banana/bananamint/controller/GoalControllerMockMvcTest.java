@@ -13,7 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@AutoConfigureTestEntityManager
+
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -37,8 +37,8 @@ class GoalControllerMockMvcTest {
 
     @Test
     void getById() {
-
-        ResponseEntity<Object> response = controller.getOne(1L);
+        final Long notFoundID  = 1L;
+        ResponseEntity<Object> response = controller.getOne(notFoundID);
         System.out.println("response:" + response.getBody());
 
         assertThat(response.getStatusCode().value())

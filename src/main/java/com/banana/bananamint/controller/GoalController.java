@@ -2,6 +2,7 @@ package com.banana.bananamint.controller;
 
 import com.banana.bananamint.domain.Account;
 import com.banana.bananamint.domain.Goal;
+import com.banana.bananamint.exception.GoalException;
 import com.banana.bananamint.exception.StatusMessage;
 import com.banana.bananamint.persistence.GoalRepositoryData;
 
@@ -44,9 +45,15 @@ public class GoalController {
     }
 
     @RequestMapping(value = "/{gid}", method = RequestMethod.GET)
-    public ResponseEntity<Object> getOne(@PathVariable("gid") Long id) {
-        if (id <= 0L) return new ResponseEntity<>( repoGoal.findById(id).get(), HttpStatus.OK);
-        else return new ResponseEntity<>(new StatusMessage(HttpStatus.NOT_FOUND.value(), "No hay objetivos cargados"), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> getOne(@PathVariable("gid") @Valid Long id) {
+        try {
+           repoGoal.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>(new StatusMessage(HttpStatus.NOT_FOUND.value(), "No hay objetivos cargados"), HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>( repoGoal.findById(id).get(), HttpStatus.OK);
+
     }
 
 
