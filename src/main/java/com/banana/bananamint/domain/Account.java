@@ -1,5 +1,6 @@
 package com.banana.bananamint.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,7 +42,12 @@ public class Account {
     @Schema(name = "maxOverdraft", example = "1.0", required = true)
     private double maxOverdraft;
 
-    @Transient
+    //@Transient
+    @ToString.Exclude
+    @JsonIgnore
+    @Schema(name = "customer_id", example = "", required = false)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     private Customer owner;
 
     @NotNull

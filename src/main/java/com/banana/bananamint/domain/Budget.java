@@ -1,5 +1,6 @@
 package com.banana.bananamint.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -19,13 +20,23 @@ public class Budget {
     @Schema(name = "ID", example = "1", required = false)
     private Long id;
 
-    @Transient
+    //@Transient
+    @ToString.Exclude
+    @JsonIgnore
+    @Schema(name = "category_id", example = "", required = false)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Schema(name = "orden", example = "1.0", required = true)
     private double amount;
 
-    @Transient
+    //@Transient
+    @ToString.Exclude
+    @JsonIgnore
+    @Schema(name = "customer_id", example = "", required = false)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     private Customer user;
 
     @Schema(name = "selected", example = "1", required = true)

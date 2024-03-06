@@ -1,5 +1,6 @@
 package com.banana.bananamint.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +24,12 @@ public class Income {
     @Schema(name = "ID", example = "1", required = false)
     private Integer Id;
 
-    @Transient
+    //@Transient
+    @ToString.Exclude
+    @JsonIgnore
+    @Schema(name = "customer_id", example = "", required = false)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     private Customer user;
 
     @Schema(name = "amount", example = "1", required = true)
@@ -35,7 +41,12 @@ public class Income {
     @Schema(name = "enterDate", example = "2024-01-31", required = true)
     private LocalDate enterDate;
 
-    @Transient
+    //@Transient
+    @ToString.Exclude
+    @JsonIgnore
+    @Schema(name = "account_id", example = "", required = false)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "account_id")
     private Account moneyTo;
 
     @Size(min=3, max = 20)

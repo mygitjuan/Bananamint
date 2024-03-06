@@ -1,6 +1,7 @@
 package com.banana.bananamint.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -47,7 +48,12 @@ public class Goal {
     private LocalDate targetDate;
 
 
-    @Transient
+    //@Transient
+    @ToString.Exclude
+    @JsonIgnore
+    @Schema(name = "customer_id", example = "", required = false)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     private Customer user;
 
 
