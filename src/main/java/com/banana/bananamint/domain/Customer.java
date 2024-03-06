@@ -7,10 +7,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.banana.bananamint.exception.CustomerException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.security.PrivilegedAction;
 import java.time.LocalDate;
 
 @Data
@@ -44,6 +46,13 @@ public class Customer {
     @Size(min = 9, max = 9)
     @Schema(name = "dni", example = "04653011L", required = true)
     private String dni;
+
+    /*@Transient
+    @JsonIgnore
+    @Schema(name = "goal_id", example = "", required = false)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.LAZY, mappedBy = "user")
+    private Goal goal;*/
+
 
     public boolean isValid() throws CustomerException {
         // Para que el usuario sea valido:
