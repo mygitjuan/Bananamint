@@ -42,6 +42,7 @@ class GoalRepositoryDataTest {
 
 
     @Test void observarCumplimientoFinanciero() throws Exception {
+        //given
         LocalDate datObj = LocalDate.now().plusYears(1L);
 
         Goal objetivo = new Goal(null, "Ladrillo", "Invertir en Ladrillo", 50000.00, "Activo", datObj, null);
@@ -58,6 +59,45 @@ class GoalRepositoryDataTest {
                 .isGreaterThan(0);
         assertNotNull(objetivoList);
 
+    }
+
+    @Test void observarCumplimientoFinancieroporId() throws Exception {
+        //given
+        LocalDate datObj = LocalDate.now().plusYears(1L);
+
+        Goal objetivo = new Goal(null, "Ladrillo", "Invertir en Ladrillo", 50000.00, "Activo", datObj, null);
+
+        em.persist(objetivo);
+        em.flush();
+
+        // when
+        Goal unObjetivo = repo.getReferenceById(1L);
+        logger.info("Mi Objetivo:" + unObjetivo);
+
+        // then
+        assertThat(unObjetivo.getId())
+                .isGreaterThan(0L);
+        assertNotNull(unObjetivo);
+
+    }
+
+    @Test void observarCumplimientoFinancieroporIdInvalido() throws Exception {
+        //given
+        LocalDate datObj = LocalDate.now().plusYears(1L);
+
+        Goal objetivo = new Goal(null, "Ladrillo", "Invertir en Ladrillo", 50000.00, "Activo", datObj, null);
+
+        em.persist(objetivo);
+        em.flush();
+
+       //then
+        try {
+            repo.getReferenceById(22L);
+        } catch (Exception e) {
+            //when
+            e.printStackTrace();
+            throw new RuntimeException("No exite registro" + e.getMessage());
+        }
 
 
     }
