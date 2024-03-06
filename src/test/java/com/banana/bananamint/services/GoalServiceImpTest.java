@@ -67,7 +67,7 @@ class GoalServiceImpTest {
         em.flush();
 
         // when
-        /*List<Goal> objetivoList = servicioGoal.showAll(usuario.getId());*/
+        List<Goal> objetivoList = servicioGoal.showAll(usuario.getId());
         /*
         logger.info("Proyectos:" + objetivoList);
 
