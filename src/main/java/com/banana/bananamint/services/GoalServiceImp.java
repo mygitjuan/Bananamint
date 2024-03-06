@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,7 +40,23 @@ public class GoalServiceImp implements GoalService{
 
     @Override
     public List<GoalApproximation> generateReport(Long idCustomer, LocalDate initDate, LocalDate finalDate) throws GoalException {
-        return null;
+        List<Goal> listaGoal =  showAll(idCustomer);
+
+        List<GoalApproximation> listG = new ArrayList<>();
+
+        for (Goal g:listaGoal) {
+
+            LocalDate tDate = g.getTargetDate();
+
+            if (tDate.isBefore(finalDate) && tDate.isAfter(initDate)) {
+                Double tAmount = g.getTargetAmount();
+                Integer tendency = 0;
+                GoalApproximation gal = new GoalApproximation(g, tAmount, tendency, tDate);
+                listG.add(gal);
+            }
+        }
+
+        return listG;
     }
 
     @Override

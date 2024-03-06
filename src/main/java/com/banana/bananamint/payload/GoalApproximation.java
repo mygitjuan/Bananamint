@@ -16,13 +16,16 @@ import java.time.LocalDate;
 public class GoalApproximation {
 
 
-    @Schema(name = "ID", example = "1", required = false)
+    @Schema(name = "ID", example = "", required = false)
     private Goal goal;
 
+    @Schema(name = "targetAmountDifference", example = "1", required = false)
     private double targetAmountDifference;
 
+    @Schema(name = "tendency", example = "1", required = false)
     private int tendency; // 1, 0, -1, depending on targetAmountDifference (positive, near zero, negative)
 
+    @Schema(name = "estimatedReachingTargetDate", example = "1", required = false)
     private LocalDate estimatedReachingTargetDate;
 
 }

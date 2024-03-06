@@ -92,7 +92,7 @@ class GoalRepositoryDataTest {
 
        //then
         try {
-            repo.getReferenceById(22L);
+            repo.getReferenceById(12345L);
         } catch (Exception e) {
             //when
             e.printStackTrace();
