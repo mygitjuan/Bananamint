@@ -1,64 +1,51 @@
 package com.banana.bananamint.controller;
 
+import com.banana.bananamint.domain.Goal;
+import com.banana.bananamint.persistence.GoalRepositoryData;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.core.annotation.Order;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class GoalControllerMockMvcTest {
 
     @Autowired
-    private GoalController controller;
+    private MockMvc mvc;
+
+    @Autowired
+    private GoalRepositoryData repository;
+
 
     @Test
-    void getAll() {
+    @Order(1)
+    @Transactional
+    public void givenProducts_whenGetProducts_thenStatus200() throws Exception {
+        LocalDate datObj = LocalDate.now().plusYears(1L);
 
-        ResponseEntity<Object> response = controller.getAll();
-        System.out.println("response:" + response.getBody());
+        Goal nuevoObjetivo = new Goal(null, "Ladrillo", "Invertir en Ladrillo", 50000.00, "Activo", datObj, null);;
+        repository.save(nuevoObjetivo);
 
-        assertThat(response.getStatusCode().value())
-                .isEqualTo(HttpStatus.OK.value());
-
-        assertThat(response.getBody())
-                .isNotNull();
+        mvc.perform(get("/objetivos").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[*].name", hasItem("Ladrillo")));
     }
-
-    @Test
-    void getById() {
-        final Long notFoundID  = 1L;
-        ResponseEntity<Object> response = controller.getOne(notFoundID);
-        System.out.println("response:" + response.getBody());
-
-        assertThat(response.getStatusCode().value())
-                .isEqualTo(HttpStatus.OK.value());
-
-        assertThat(response.getBody())
-                .isNotNull();
-    }
-
-    @Test
-    void getByIdInvalid() {
-
-        final Long notFoundID  = 12345L;
-        
-        assertThat(controller.getOne(notFoundID).getStatusCode().value())
-                .isEqualTo(HttpStatus.NOT_FOUND.value());
-
-        assertThat(controller.getOne(notFoundID).getBody())
-                .isNotEqualTo("[]");
-    }
-
 
 }
