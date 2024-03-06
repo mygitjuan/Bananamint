@@ -10,10 +10,10 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(name = "transaction", description = "Modelo movimientos o transacciones")
+
 public class Transaction {
 
-    @Schema(name = "ID", example = "1", required = false)
+
     private Integer id;
 
     private double amount;

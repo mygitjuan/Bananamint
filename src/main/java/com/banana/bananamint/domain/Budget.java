@@ -22,13 +22,16 @@ public class Budget {
     @Transient
     private Category category;
 
+    @Schema(name = "orden", example = "1.0", required = true)
     private double amount;
 
     @Transient
     private Customer user;
 
+    @Schema(name = "selected", example = "1", required = true)
     private Long selected;
 
+    @Schema(name = "balance", example = "1", required = true)
     private Long balance;
 
 }

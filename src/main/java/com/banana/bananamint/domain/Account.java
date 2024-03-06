@@ -34,13 +34,18 @@ public class Account {
     @Schema(name = "openingDate", example = "2024-01-31", required = true)
     LocalDate openingDate;
 
+    @Schema(name = "balance", example = "1.0", required = true)
     private double balance;
 
+    @Column(name="max_overdraft")
+    @Schema(name = "maxOverdraft", example = "1.0", required = true)
     private double maxOverdraft;
 
     @Transient
     private Customer owner;
 
+    @NotNull
+    @Schema(name = "active", example = "true", required = true)
     private boolean active;
 
 }
