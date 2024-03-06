@@ -24,9 +24,9 @@ public class GoalServiceImp implements GoalService{
 
     @Override
     public List<Goal> showAll(Long idCustomer) throws GoalException {
-        Customer usuario = serviceCustomer.findByCustomerId(idCustomer);
+        Customer user = serviceCustomer.findByCustomerId(idCustomer);
 
-        List<Goal> listGoal = repoGoal.findByUserContaining(usuario);
+        List<Goal> listGoal = repoGoal.findByUserContaining(user);
 
         return listGoal;
 

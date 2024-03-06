@@ -68,14 +68,14 @@ class GoalServiceImpTest {
 
         // when
         List<Goal> objetivoList = servicioGoal.showAll(usuario.getId());
-        /*
-        logger.info("Proyectos:" + objetivoList);
+
+        logger.info("Objetivo:" + objetivoList);
 
         // then
         assertThat(objetivoList.size())
                 .isGreaterThan(0);
         assertNotNull(objetivoList);
-*/
+
 
 
     }

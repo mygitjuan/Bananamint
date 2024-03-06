@@ -49,7 +49,6 @@ public class Goal {
 
 
     //@Transient
-    @ToString.Exclude
     @JsonIgnore
     @Schema(name = "customer_id", example = "", required = false)
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
