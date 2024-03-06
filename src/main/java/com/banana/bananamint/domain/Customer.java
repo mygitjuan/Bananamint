@@ -1,12 +1,11 @@
 package com.banana.bananamint.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 import com.banana.bananamint.exception.CustomerException;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -15,10 +14,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table
+@Schema(name = "customer", description = "Modelo usuario")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
+    @Schema(name = "ID", example = "1", required = false)
     private Long id;
     private String name;
     private String email;

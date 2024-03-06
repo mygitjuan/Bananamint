@@ -3,13 +3,18 @@ package com.banana.bananamint.payload;
 
 import com.banana.bananamint.domain.Expense;
 import com.banana.bananamint.domain.Income;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(name = "netting", description = "Modelo balance")
 public class IncomeExpenseComparison {
 
     private Income income;
