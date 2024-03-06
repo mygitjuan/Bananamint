@@ -54,4 +54,7 @@ public class Account {
     @Schema(name = "active", example = "true", required = true)
     private boolean active;
 
+    public Account(Long id) {
+        this.id = id;
+    }
 }

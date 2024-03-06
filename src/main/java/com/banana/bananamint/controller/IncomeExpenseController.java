@@ -32,34 +32,26 @@ public class IncomeExpenseController {
     @Autowired
     private AccountRepositoryData accoRepo;
 
-    @PutMapping(value = "/{uid}/cuenta/{cid}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{uid}/cuenta/{cid}/gasto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity anadeGastosCuenta(
             @PathVariable @Min(1) Long uid,
             @PathVariable @Min(1) Long cid,
             @RequestBody @Valid Expense gastos
     ) {
-        Account cta = accoRepo.findById(cid).orElseThrow(() -> new IncomeExpenseException("No existe la cuenta" + cid));;
-        if(gastos.getMoneyFrom() == null && gastos.getMoneyFrom() == cta){
-            gastos.setMoneyFrom(cta);
-            return new ResponseEntity<>(servIncExp.addExpense(uid,gastos), HttpStatus.CREATED);
-        }
-        else throw new IncomeExpenseException("Gastos de una cuenta distinta a la de Expense");
+        Account cta = accoRepo.findById(cid).orElseThrow(() -> new IncomeExpenseException("No existe la cuenta " + cid));;
+        gastos.setMoneyFrom(cta);
+        return new ResponseEntity<>(servIncExp.addExpense(uid,gastos), HttpStatus.CREATED);
     }
 
 
-    @PutMapping(value = "/{uid}/ingreso/{cid}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{uid}/cuenta/{cid}/ingreso", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity anadeIngresosCuenta(
             @PathVariable @Min(1) Long uid,
             @PathVariable @Min(1) Long cid,
             @RequestBody @Valid Income ingresos
     ) {
-        Account cta = accoRepo.findById(cid).orElseThrow(() -> new IncomeExpenseException("No existe la cuenta" + cid));;
-        if(ingresos.getMoneyTo() == null && ingresos.getMoneyTo() == cta){
-            ingresos.setMoneyTo(cta);
-            return new ResponseEntity<>(servIncExp.addIncome(uid,ingresos), HttpStatus.CREATED);
-        }
-        else throw new IncomeExpenseException("Gastos de una cuenta distinta a la de Expense");
+        Account cta = accoRepo.findById(cid).orElseThrow(() -> new IncomeExpenseException("No existe la cuenta " + cid));;
+        ingresos.setMoneyTo(cta);
+        return new ResponseEntity<>(servIncExp.addIncome(uid,ingresos), HttpStatus.CREATED);
     }
-
-
 }
