@@ -73,12 +73,12 @@ spring:
 server:
   servlet.contextPath: /api/v1
   port: 8843
-#  ssl:
-#    key-store: keyproyecto.p12
-#    key-store-password: dam3tufuerzap3gaso
-#    keyStoreType: PKCS12
-#    keyAlias: bobcat
+  ssl:
+    key-store: keyBananamint.p12
+    key-store-password: dam3tufuerzap3gaso
+    keyStoreType: PKCS12
+    keyAlias: bobcat
 
-#security.require-ssl: true
+security.require-ssl: true
 
 
