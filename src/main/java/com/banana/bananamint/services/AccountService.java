@@ -9,5 +9,5 @@ import java.util.List;
 public interface AccountService {
     public List<Account> showAll(Long idCustomer) throws AccountException;
 
-    public Account open(Customer idCustomer, Account account) throws AccountException;
+    Account open(Long idCustomer, Account account) throws AccountException;
 }

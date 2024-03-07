@@ -4,19 +4,22 @@ import com.banana.bananamint.domain.Account;
 import com.banana.bananamint.domain.Customer;
 import com.banana.bananamint.exception.AccountException;
 import com.banana.bananamint.persistence.AccountRepositoryData;
+import com.banana.bananamint.persistence.CustomerRepositoryData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public abstract class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl implements AccountService {
 
     private final AccountRepositoryData accountRepository;
+    private final CustomerService customerService;
 
     @Autowired
-    public AccountServiceImpl(AccountRepositoryData accountRepository) {
+    public AccountServiceImpl(AccountRepositoryData accountRepository, CustomerService customerService) {
         this.accountRepository = accountRepository;
+        this.customerService = customerService;
     }
 
     @Override
@@ -28,9 +31,10 @@ public abstract class AccountServiceImpl implements AccountService {
         return accounts;
     }
     @Override
-    public Account open(Customer idCustomer, Account account) throws AccountException {
+    public Account open(Long idCustomer, Account account) throws AccountException {
+        Customer customer = customerService.findById(idCustomer);
         // Asignar el cliente a la cuenta
-        account.setOwner(idCustomer);
+        account.setOwner(customer);
 
         // Guardar la nueva cuenta en la base de datos
         return accountRepository.save(account);

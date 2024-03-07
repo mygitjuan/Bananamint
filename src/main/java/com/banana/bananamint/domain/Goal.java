@@ -52,7 +52,7 @@ public class Goal {
     @ToString.Exclude
     @JsonIgnore
     @Schema(name = "customer_id", example = "", required = false)
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer user;
 

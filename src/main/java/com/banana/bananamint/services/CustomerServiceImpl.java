@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private final CustomerRepository customerRepository;
+    private final CustomerRepositoryData customerRepository;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(CustomerRepositoryData customerRepository) {
         this.customerRepository = customerRepository;
     }
 
     @Override
     public Customer findById(Long id) {
         return customerRepository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id: " + id));
+                .orElseThrow(() -> new CustomerException("Customer no encontrado con el id: " + id));
     }
 }
-}
+
