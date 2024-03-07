@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataJpaTest
 @ComponentScan(basePackages = {"com.banana.bananamint.services","com.banana.bananamint.persistence"})
 @AutoConfigureTestEntityManager
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class GoalServiceImpTest {
     @Autowired
     private GoalService servicioGoal;

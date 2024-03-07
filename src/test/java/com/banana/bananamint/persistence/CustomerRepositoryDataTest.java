@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataJpaTest
 @ComponentScan("com.banana.bananamint.persistence")
 @AutoConfigureTestEntityManager
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class CustomerRepositoryDataTest {
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepositoryDataTest.class);
 

@@ -1,0 +1,2 @@
+TRUNCATE  TABLE customer;
+TRUNCATE  TABLE goal;
