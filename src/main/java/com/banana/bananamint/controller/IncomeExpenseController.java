@@ -32,7 +32,7 @@ public class IncomeExpenseController {
     @Autowired
     private AccountRepositoryData accoRepo;
 
-    @PutMapping(value = "/{uid}/cuenta/{cid}/gasto", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{uid}/cuenta/{cid}/gasto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity anadeGastosCuenta(
             @PathVariable @Min(1) Long uid,
             @PathVariable @Min(1) Long cid,
@@ -44,7 +44,7 @@ public class IncomeExpenseController {
     }
 
 
-    @PutMapping(value = "/{uid}/cuenta/{cid}/ingreso", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{uid}/cuenta/{cid}/ingreso", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity anadeIngresosCuenta(
             @PathVariable @Min(1) Long uid,
             @PathVariable @Min(1) Long cid,

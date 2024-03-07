@@ -36,7 +36,7 @@ class ExpenseRepositoryDataTest {
     void anadir_ungasto() {
         // given
         Customer usu = tem.find(Customer.class, 1L);
-        Account cta = new Account(null, "ahorro", LocalDate.now(), 200, 100,usu, true);
+        Account cta = tem.find(Account.class, 1L);
         Expense gasto = new Expense(null, usu, 10, LocalDate.now(),cta, "pendiente");
 
         // when
@@ -51,7 +51,7 @@ class ExpenseRepositoryDataTest {
     void anadir_uningreso() {
         // given
         Customer usu = tem.find(Customer.class, 1L);
-        Account cta = new Account(null, "ahorro", LocalDate.now(), 200, 100,usu, true);
+        Account cta = tem.find(Account.class, 1L);
         Income ingreso = new Income(null, usu, 10, LocalDate.now(),cta, "pendiente");
 
         // when

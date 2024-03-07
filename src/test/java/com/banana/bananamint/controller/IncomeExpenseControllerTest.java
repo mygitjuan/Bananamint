@@ -23,7 +23,7 @@ class IncomeExpenseControllerTest {
     private IncomeExpenseController controller;
 
     @Test
-    void dadoUnGasto_cuandoAnadimosACuentaDeUnUsuario_entoncesIsNotNull() {
+    void dadoUnGasto_cuandoAnadimosACuentaDeUnUsuario_entoncesIsCREATED() {
         Customer usu = new Customer(1L);
         Account cta = new Account(1L);
         Expense gasto = new Expense(null, usu, 10, LocalDate.now(),cta, "pendiente");
@@ -35,13 +35,24 @@ class IncomeExpenseControllerTest {
         ResponseEntity<Expense> response = controller.anadeGastosCuenta(usu.getId(),cta.getId(),gasto);
 
         System.out.println("respuesta gasto:" + response);
-        System.out.println("gasto:" + response.getBody());
 
-        //assertThat(response.getStatusCode().value()).isEqualTo(HttpStatus.OK.value());
-        //assertThat(response.getBody()).isNotNull();
+        assertThat(response.getStatusCode().value()).isEqualTo(HttpStatus.CREATED.value());
     }
 
     @Test
     void anadeIngresosCuenta() {
+        Customer usu = new Customer(1L);
+        Account cta = new Account(1L);
+        Income ingresos = new Income(null, usu, 10, LocalDate.now(),cta, "pendiente");
+
+        System.out.println("usu:" + usu);
+        System.out.println("cta:" + cta);
+        System.out.println("gasto:" + ingresos);
+
+        ResponseEntity<Expense> response = controller.anadeIngresosCuenta(usu.getId(),cta.getId(),ingresos);
+
+        System.out.println("respuesta gasto:" + response);
+
+        assertThat(response.getStatusCode().value()).isEqualTo(HttpStatus.CREATED.value());
     }
 }
