@@ -9,4 +9,5 @@ public interface AccountJPARepository {
     public List<Account> findAll(Long idCustomer) throws SQLException;
 
     public Account save(Account account) throws SQLException;
+
 }

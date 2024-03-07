@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BudgetService implements IBudgetService {
+public abstract class BudgetService implements IBudgetService {
     private Logger logger = LoggerFactory.getLogger(BudgetService.class);
 
     @Autowired
     private BudgetJPARepository budgetJPARepository;
 
-    @Override
-    public Budget create(Budget budget){
-        Long amount = new Long();
-        budget.setAmount();
-        return BudgetJPARepository.save(budget);
-    }
+   // @Override
+    //public Budget create(Budget budget){
+    //    Long amount = new ;
+     //   budget.getAmount();
+     //   return BudgetJPARepository.class
+    //}
 
     @Override
     public List<Budget> showAll(Long idCustomer, String categoryName) throws BudgetException {

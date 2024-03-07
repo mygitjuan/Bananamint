@@ -10,5 +10,5 @@ public interface BudgetJPARepository {
 
     public List<Budget> findByCustomerAndCategoryName(Long idCustomer, String categoryName) throws SQLException;
 
-    public static Budget save(Budget budget) throws SQLException;
+   // public static Budget save(Budget budget) throws SQLException;
 }
