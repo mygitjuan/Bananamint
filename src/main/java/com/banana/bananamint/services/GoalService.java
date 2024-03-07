@@ -18,4 +18,5 @@ public interface GoalService {
 
     public List<Debt> accumulatedDebt(Long idCustomer, LocalDate initDate, LocalDate finalDate) throws GoalException;
 
+    public List<Goal> getGoalsByText(String text);
 }

@@ -39,7 +39,7 @@ class GoalControllerMockMvcTest {
     public void givenProducts_whenGetProducts_thenStatus200() throws Exception {
         LocalDate datObj = LocalDate.now().plusYears(1L);
 
-        Goal nuevoObjetivo = new Goal(null, "Ladrillo", "Invertir en Ladrillo", 50000.00, "Activo", datObj, null);;
+        Goal nuevoObjetivo = new Goal(null, "Ladrillo", "Invertir en Ladrillo", 50000.00, "Activo", datObj, null);
         repository.save(nuevoObjetivo);
 
         mvc.perform(get("/objetivos").contentType(MediaType.APPLICATION_JSON))

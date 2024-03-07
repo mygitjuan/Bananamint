@@ -63,4 +63,9 @@ public class GoalServiceImp implements GoalService{
     public List<Debt> accumulatedDebt(Long idCustomer, LocalDate initDate, LocalDate finalDate) throws GoalException {
         return null;
     }
+
+    @Override
+    public List<Goal> getGoalsByText(String text) {
+        return repoGoal.findByNameContaining(text);
+    }
 }
