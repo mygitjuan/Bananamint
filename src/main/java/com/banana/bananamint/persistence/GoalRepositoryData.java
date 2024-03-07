@@ -14,7 +14,8 @@ public interface GoalRepositoryData  extends JpaRepository<Goal, Long> {
 
     List<Goal> findByNameContaining(String name);
 
-    @Query("select g from Goal g where customer_id = ?1")
+    //@Query("select g from Goal g where customer_id = ?1")
+    @Query("select g from Goal g where g.user = ?1")
     List<Goal> findByUserContaining(Customer user);
 
 
