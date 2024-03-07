@@ -1,7 +1,7 @@
 spring:
   application:
     name: Bananamint
-  profiles.active: prod
+  profiles.active: dev
 
 server:
   servlet.contextPath: /api
