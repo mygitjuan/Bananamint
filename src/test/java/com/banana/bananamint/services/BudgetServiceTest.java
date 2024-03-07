@@ -37,8 +37,7 @@ class BudgetServiceTest {
     @Test
     void givenBudgets_whengetAllBudgets_thenIsNotNull() {
 
-     //   List<Budget> presupuestos = presupService.showAll(1L,"Categoria");
-        System.out.println("todos los presupuestos:" + presupuestos);
+        //List<Budget> presupuestos = presupService.showAll(1L,"Categoria");
 
         //   assertNotNull(presupuestos);
 

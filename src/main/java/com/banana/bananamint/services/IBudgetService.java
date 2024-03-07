@@ -20,12 +20,12 @@ public interface IBudgetService {
 
     Budget create(Budget budget);
 
-    public List<Budget> showAll(Long idCustomer, String id) throws BudgetException {
+  //  public List<Budget> showAll(Long idCustomer, String id) throws BudgetException {
 
-        List<> presu = BudgetRepo.findAll();
-        return null;
-
-    }
+    //    List<> presu = BudgetRepo.findAll();
+    //    return null;
+//
+   // }
 
 
     public Budget add(Long idCustomer, String categoryName) throws BudgetException;

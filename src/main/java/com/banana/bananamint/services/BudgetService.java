@@ -41,13 +41,13 @@ public abstract class BudgetService implements IBudgetService {
     //   return BudgetJPARepository.class
     //}
 
-    @Override
-    public List<Budget> showAll(Long idCustomer, String categoryName) throws BudgetException {
+    //@Override
+    //public List<Budget> showAll(Long idCustomer, String categoryName) throws BudgetException {
 
-        List<Budget> lpresup = BudgetRepo.findAll();
+     //   List<Budget> lpresup = BudgetRepo.findAll();
 
 
-    }
+    //}
 
     @Override
     public Budget add(Long idCustomer, String categoryName) throws BudgetException {

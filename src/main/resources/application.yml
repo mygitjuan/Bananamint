@@ -60,15 +60,12 @@ spring:
     username: banana_user
     password: bmint123
   jpa:
-    show-sql: true
+    show-sql: false
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
       ddl-auto: update
       generate-ddl: true
     defer-datasource-initialization: true
-  h2:
-    console.enabled: true
-    console.path: /h2-ui
 
 server:
   servlet.contextPath: /api/v1
