@@ -50,13 +50,9 @@ public class IncomeExpenseServ implements IncomeExpenseService{
     @Override
     public Income addIncome(Long idCustomer, Income income) throws IncomeExpenseException {
         Customer cust = custRepo.findById(idCustomer).orElseThrow(() -> new IncomeExpenseException("No existe el customer" + idCustomer));
-        em.detach(cust);
 
-        if (income.getUser() == cust) {return ingrRepo.save(income);}
-        else{
-            new IncomeExpenseException("No tiene el mismo customer" + idCustomer);
-            return null;
-        }
+        income.setUser(cust);
+        return ingrRepo.save(income);
     }
 
     @Override
@@ -65,7 +61,6 @@ public class IncomeExpenseServ implements IncomeExpenseService{
         List<Expense> gastUsu = new ArrayList<>();
 
         Customer cust = custRepo.findById(idCustomer).orElseThrow(() -> new IncomeExpenseException("No existe el customer" + idCustomer));
-        em.detach(cust);
 
         for (Expense expense: gastTot){
             if(expense.getUser() == cust){gastUsu.add(expense);}
@@ -76,13 +71,8 @@ public class IncomeExpenseServ implements IncomeExpenseService{
     @Override
     public Expense addExpense(Long idCustomer, Expense expense) throws IncomeExpenseException {
         Customer cust = custRepo.findById(idCustomer).orElseThrow(() -> new IncomeExpenseException("No existe el customer" + idCustomer));
-        em.detach(cust);
-
-        if (expense.getUser() == cust) {return gastRepo.save(expense);}
-        else{
-            new IncomeExpenseException("No tiene el mismo customer" + idCustomer);
-            return null;
-        }
+        expense.setUser(cust);
+        return gastRepo.save(expense);
     }
 
     @Override
