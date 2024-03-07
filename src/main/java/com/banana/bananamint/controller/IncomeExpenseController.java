@@ -32,6 +32,10 @@ public class IncomeExpenseController {
     @Autowired
     private AccountRepositoryData accoRepo;
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Successfully created"),
+            @ApiResponse(responseCode = "4XX", description = "Bad request")
+    })
     @PostMapping(value = "/{uid}/cuenta/{cid}/gasto", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity anadeGastosCuenta(
             @PathVariable @Min(1) Long uid,
@@ -44,6 +48,10 @@ public class IncomeExpenseController {
     }
 
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Successfully created"),
+            @ApiResponse(responseCode = "4XX", description = "Bad request")
+    })
     @PostMapping(value = "/{uid}/cuenta/{cid}/ingreso", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity anadeIngresosCuenta(
             @PathVariable @Min(1) Long uid,
