@@ -28,7 +28,7 @@ public class Income {
     @ToString.Exclude
     @JsonIgnore
     @Schema(name = "customer_id", example = "", required = false)
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer user;
 
@@ -45,7 +45,7 @@ public class Income {
     @ToString.Exclude
     @JsonIgnore
     @Schema(name = "account_id", example = "", required = false)
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "account_id")
     private Account moneyTo;
 

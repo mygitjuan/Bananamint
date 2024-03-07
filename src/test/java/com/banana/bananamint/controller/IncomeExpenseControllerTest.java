@@ -17,19 +17,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class IncomeExpenseControllerTest {
-/*
-    @Autowired
-    private CustomerRepositoryData custRepo;
-    @Autowired
-    private AccountRepositoryData accoRepo;
-    @Autowired
-    private ExpenseRepositoryData gastRepo;
-    @Autowired
-    private IncomeRepositoryData ingrRepo;
-*/
+
     @Autowired
     private IncomeExpenseController controller;
 
@@ -41,7 +30,7 @@ class IncomeExpenseControllerTest {
 
     /*    usu = custRepo.saveAndFlush(usu);
         cta = accoRepo.saveAndFlush(cta);*/
-        
+
         System.out.println("usu:" + usu);
         System.out.println("cta:" + cta);
         System.out.println("gasto:" + gasto);
