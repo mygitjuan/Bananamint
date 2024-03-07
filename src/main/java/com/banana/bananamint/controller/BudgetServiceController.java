@@ -1,7 +1,6 @@
 package com.banana.bananamint.controller;
 
 import com.banana.bananamint.persistence.BudgetJPARepository;
-import com.banana.bananamint.services.BudgetService;
 import com.banana.bananamint.services.IBudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +15,6 @@ public class BudgetServiceController {
     BudgetJPARepository BudgetRepo;
 
     @Autowired
-    BudgetService service;
+    IBudgetService service;
 
 }
