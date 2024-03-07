@@ -16,19 +16,15 @@ import java.util.List;
 
 public interface IBudgetService {
 
-    @Autowired
-    private ExpenseRepositoryData BudgetRepo;
-    @Autowired
-    private CustomerRepositoryData custRepo;
-    @Autowired
-    private CategoryRepositoryData categRepo;
+
 
     Budget create(Budget budget);
 
     public List<Budget> showAll(Long idCustomer, String id) throws BudgetException {
 
-        List<Budger> presu = BudgetRepo.findAll();
+        List<> presu = BudgetRepo.findAll();
         return null;
+
     }
 
 
